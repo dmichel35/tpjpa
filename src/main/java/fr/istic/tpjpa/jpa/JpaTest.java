@@ -20,15 +20,14 @@ public class JpaTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+
 		EntityManagerFactory factory = Persistence
 				.createEntityManagerFactory("example");
 		EntityManager manager = factory.createEntityManager();
 		JpaTest test = new JpaTest(manager);
 
 		EntityTransaction tx = manager.getTransaction();
-		tx.begin();
-
-		
+		tx.begin();		
 
 		// create entity Person : Jean-Kevin
 		Person jeanKevin = new Person();
@@ -39,7 +38,7 @@ public class JpaTest {
 		jeanKevin.setHobbies("Loliloleur");
 		jeanKevin.setJob("Dresseur pokemon lvl 55");
 
-		// create entity Person : SuperHouse
+		// create entity Home : SuperHouse
 		Home superHouse = new Home();
 		superHouse.setAddress("13 LALALA STREET");
 		superHouse.setCityArea("Fratton");
@@ -48,22 +47,21 @@ public class JpaTest {
 		superHouse.setCountry("UK");
 		superHouse.setResident(jeanKevin);
 		
-		// create entity Person : BadHouse
+		// create entity Home : BadHouse
 		Home badHouse = new Home();
 		superHouse.setResident(jeanKevin);
 		
-		//persist entities
-		
+		//persist entities		
 		test.manager.persist(jeanKevin);
 		test.manager.persist(superHouse);
 		test.manager.persist(badHouse);
 		
-
 		tx.commit();
 
 		// TODO run request
 
 		System.out.println(".. Jean-Kevin spotted !");
+		
 	}
 
 }
